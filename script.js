@@ -3,12 +3,6 @@
 const sendInput = document.querySelector('#input'); //тексовое поле для ввода пункта списка
 const itemsContainer = document.querySelector('.items'); //контейнер с новыми пунктами
 
-const listItems = document.querySelectorAll('.items');
-for (let item of listItems) { //зачеркнуть пункт списка
-    item.addEventListener('click', function() {
-        item.classList.toggle('done');
-    });
-}
 
 sendInput.addEventListener('keydown', function(event) {
     const itemText = sendInput.value; //взять текст из поля input, обратившись к его свойству value, и сохраним в переменной itemText
@@ -17,6 +11,10 @@ sendInput.addEventListener('keydown', function(event) {
     newItem.classList.add('items'); //добавим класс items для элемента newItem из таблицы стилей
     newItem.textContent = itemText; //с помощью свойства textContent укажем новому элементу, введённый пользователем пункт списка
 
+      newItem.addEventListener('click', function() { //зачеркнуть пункт списка
+        newItem.classList.toggle('done');
+    });
+    
     if (event.key == 'Enter' && itemText != '') { //проверка наличия текста в поле перед добавлением пункт списка
         itemsContainer.append(newItem);
         sendInput.value = ''; //очистка input после добавления нового элемента в список
